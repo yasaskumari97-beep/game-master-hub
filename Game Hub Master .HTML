@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Master Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('Lucid_Origin_Create_a_stylized_logo_for_Game_Master_Hub_featur_0.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: red;
+      text-align: center;
+      overflow: hidden;
+      cursor: url('cursor.png'), auto;
+    }
+
+    /* Intro Splash */
+    #intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: url('cursor.png'), auto;
+    }
+
+    #intro img {
+      width: 250px;
+      margin-bottom: 40px;
+      position: relative;
+      transition: transform 0.1s linear;
+      border-radius: 12px;
+      box-shadow: 0 0 25px red;
+    }
+
+    .loader {
+      width: 80%;
+      max-width: 450px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid red;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, red, yellow, red);
+      animation: load 5s forwards;
+    }
+
+    @keyframes load {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Get Started button */
+    #get-started {
+      display: none;
+      margin-top: 40px;
+      padding: 12px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: url('cursor.png'), pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    #get-started:hover {
+      background: darkred;
+      transform: scale(1.05);
+    }
+
+    /* Login Panel */
+    #login-panel {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .login-box {
+      background: #111;
+      padding: 40px;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0px 0px 15px red;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: red;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: url('cursor.png'), text;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: red;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: url('cursor.png'), pointer;
+    }
+
+    .login-btn:hover { background: darkred; }
+
+    .google-btn {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: white;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: url('cursor.png'), pointer;
+    }
+
+    .google-btn:hover { background: #ddd; }
+
+    #main { display: none; }
+
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+    }
+
+    header img {
+      max-width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px red;
+    }
+
+    nav { margin-top: 15px; }
+
+    nav a {
+      text-decoration: none;
+      color: red;
+      font-size: 18px;
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: url('cursor.png'), pointer;
+    }
+
+    .search-bar {
+      margin: 30px auto;
+      max-width: 400px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      cursor: url('cursor.png'), text;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      background: #007BFF;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      cursor: url('cursor.png'), pointer;
+    }
+
+    .search-bar button:hover { background: #0056b3; }
+
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 0px 15px rgba(255,255,255,0.8);
+      animation: rainbow 5s infinite linear;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .contact { margin: 50px 0; }
+
+    .contact img {
+      width: 60px;
+      height: 60px;
+      cursor: url('cursor.png'), pointer;
+      transition: transform 0.3s;
+    }
+
+    .contact img:hover { transform: scale(1.1); }
+  </style>
+</head>
+<body>
+  <!-- Intro Splash -->
+  <div id="intro">
+    <img id="intro-logo" src="WhatsApp Image 2025-09-18 at 9.16.45 PM.jpeg" alt="Loading Logo">
+    <div class="loader"><div class="loader-bar"></div></div>
+    <button id="get-started">Get Started</button>
+  </div>
+
+  <!-- Login Panel -->
+  <div id="login-panel">
+    <div class="login-box">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button class="login-btn" id="login-btn">Login</button>
+      <button class="google-btn">Sign in with Google</button>
+    </div>
+  </div>
+
+  <!-- Main Site -->
+  <div id="main">
+    <header>
+      <img src="WhatsApp Image 2025-09-18 at 9.16.45 PM.jpeg" alt="Game Master Hub Logo">
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Games</a>
+        <a href="#">About</a>
+        <a href="https://wa.me/94702920445" target="_blank">Contact</a>
+      </nav>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search games...">
+      <button>Search</button>
+    </div>
+
+    <h1>Welcome to Game Master Hub</h1>
+    <p>Your hub to upload and explore amazing games!</p>
+
+    <div id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <p>Click below to chat with us on WhatsApp:</p>
+      <a href="https://wa.me/94702920445" target="_blank">
+        <img src="whatsapp.png" alt="WhatsApp">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Show Get Started button after loading finishes
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("get-started").style.display = "inline-block";
+      }, 5000);
+    });
+
+    // When Get Started clicked → show login panel
+    document.getElementById("get-started").addEventListener("click", () => {
+      document.getElementById("login-panel").style.display = "flex";
+    });
+
+    // When Login clicked → hide intro & login, show main site
+    document.getElementById("login-btn").addEventListener("click", () => {
+      document.getElementById("login-panel").style.display = "none";
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("main").style.display = "block";
+      document.body.style.overflow = "auto";
+    });
+
+    // Logo move effect
+    document.addEventListener("mousemove", (e) => {
+      const logo = document.getElementById("intro-logo");
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 40;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 40;
+      logo.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+  </script>
+</body>
+</html>
